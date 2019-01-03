@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Your Application Environment</title>
+<script>
+setTimeout(function() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/dxenv");
+    
+    xhr.onreadystatechange=function() {
+      if(xhr.readyState == 4) {
+        eval("var response=" + xhr.responseText);
+        
+        var docroot_el = document.getElementById("docroot");
+        var rooturl_el = document.getElementById("rooturl");
+        
+        var rooturl = 'http://localhost:' + response.dxenv.port;
+        
+        docroot_el.appendChild(document.createTextNode('Document Root: ' + response.dxenv.root));
+        rooturl_el.appendChild(document.createTextNode('Root URL: ' + rooturl));
+      }
+    }
+    
+    xhr.send(null);
+},1);
+</script>
+</head>
+<body>
+<p>
+To see different content on this page edit dxapp/pub/index.htm and "rebuild" the application
+</p>
+<p>
+This page does however provide an example of how to use Ajax, DOM and/or JSON functionality within your application
+</p>
+<p>
+So you may want to move this page instead of replacing it entirely
+</p>
+<hr>
+<p>
+Your Application Environment:
+</p>
+<ul>
+<li><div id="docroot"></div></li>
+<li><div id="rooturl"></div></li>
+</ul>
+</body>
+</html>

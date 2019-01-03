@@ -1,0 +1,50 @@
+DeskMLKit is an open source toolkit for developing desktop applications using 
+web technologies, ergo, the "Desk Wide Web"
+
+Obtain the latest version http://code.google.com/p/deskml/
+
+Unzip/untar the version for your operating system then inside the resulting 
+directory create a shell for your application likewise:
+
+On Linux: cp -r platform/dxcore.vfs ./my_app_name.vfs
+
+On Windows, same as above with cygwin, otherwise just copy the entire 
+platform/dxcore.vfs folder to the same folder as contains sdx.kit and the two
+.exe files named beginning "tclkit", and rename dxcore.vfs to something such as
+my_app_name.vfs (the directory name must end with .vfs)
+
+Inside of this directory you can place your content including html, css and 
+javascript (.js) files, inside of dxapp/pub.  You can nest as many directories 
+as needed inside dxapp/pub, but the html file that will display when first
+launched must be "index.html".  There is already an index.html file inside of 
+dxapp/pub and this provides a good example for using Ajax, DOM and JSON 
+functionality
+
+You can also emit dynamic, server-generated content by adding Tcl procedures 
+(with the "proc" command) to the routes.tcl file, which already contains an 
+example, the /dxenv URL requested via ajax by dxapp/pub/index.html.
+
+As you create your content within your .vfs you can run DeskMLKit in "development 
+mode" to view your modifications, in the following manner:
+
+DeskMLKit Dev Mode on Windows, from the command prompt or cygwin, within the 
+directory where 'tclkitsh-win32.upx.exe' and your .vfs reside:
+
+tclkitsh-win32.upx.exe my_app_name.vfs/main.tcl
+
+DeskMLKit Dev Mode on Linux within same directory except it contains tclkit0:
+
+./tclkit0 my_app_name.vfs/main.tcl
+
+To generate a single executable file from content in your .vfs directory:
+
+Windows:
+tclkitsh-win32.upx.exe sdx.kit wrap my_app_name.exe -runtime tclkit-win32.upx.exe
+
+Linux:
+./tclkit0 sdx.kit wrap my_app_name.exe -runtime ./tclkit1
+
+Note that in the two examples above for generating a single executable .exe file
+you must reference two different versions of tclkit: tclkit(sh/0) coming first
+
+Thanks for using DeskMLKit!
